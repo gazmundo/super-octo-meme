@@ -1,0 +1,17 @@
+name: sample-workflow
+on: [push]
+jobs:
+  explore-first-github-workflow:
+    runs-on: ubuntu-latest
+    steps:
+      - run: echo "Triggered by ${{github.event_name}}"
+      - run: echo "Running on ${{github.event_name}}"  
+      - run: echo "Branch is ${{github.ref}} repo is ${{github.repository}}"   
+      - name: Check out repository
+        uses: actions/checkout@v2
+      - run: echo "The repo ${{github.repository}} has been cloned to runner"  
+      - run: echo "The workflow is now ready to test code on runner"           
+      - name: List files in repository
+        run:  |
+          ls ${{github.workspace}}
+      - run: echo "The job status is ${{job.status}}"            
